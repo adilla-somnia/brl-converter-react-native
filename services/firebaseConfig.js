@@ -5,7 +5,7 @@ import { getReactNativePersistence } from "firebase/auth";
 import { Platform } from "react-native";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBSrnZgbm3k9_EhiGUUgMW33hrvhErwbI0",
+    apiKey: "",
     authDomain: "brl-converter2.firebaseapp.com",
     projectId: "brl-converter2",
     storageBucket: "brl-converter2.firebasestorage.app",
