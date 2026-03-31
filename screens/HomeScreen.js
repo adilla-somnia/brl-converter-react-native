@@ -4,7 +4,6 @@ import { styles } from "../styles/root";
 import { useEffect, useState } from "react";
 import CurrencyCard from "../components/CurrencyCard";
 import { getCurrencies } from "../services/api";
-import '../styles/LoadingButton.css';
 
 export default function HomeScreen() {
     const [visible, setVisible] = useState(false);
@@ -17,6 +16,18 @@ export default function HomeScreen() {
 
     const fetchData = async () => {
         try {
+            let now = new Date();
+            console.log(now.getHours());
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            console.log(hours, minutes);
+            let hoursMinutes = `${hours}:${minutes}`;
+            console.log(hoursMinutes);
+            setCurrentTime(hoursMinutes);
+            console.log(currentTime);
+
+
             // Simulate fetching data
             const data = await getCurrencies();
             setCurrencies(data);
@@ -27,9 +38,9 @@ export default function HomeScreen() {
                 return;
 
             }
-            setCurrentTime(data["USD"].currentTime);
-            console.log(data["USD"].currentTime)
-            console.log(data);
+
+            // console.log(data["USD"].currentTime)
+            // console.log(data);
             setLoading(false);
             setSnackbarMessage("Cotações atualizadas!")
             onToggleSnackBar();
@@ -56,7 +67,7 @@ export default function HomeScreen() {
                 <SafeAreaView style={{ padding: 28, paddingBottom: 62, backgroundColor: "#6750a4", borderBottomLeftRadius: 15, borderBottomRightRadius: 15, alignItems: "center", position: "absolute", width: "100%" }} >
 
                     <Text style={{ color: 'white', fontSize: 24, fontWeight: 'bold' }}>Conversor de</Text>
-                    <Text style={{ color: 'white', fontSize: 24, fontWeight: 'bold' }}>Moedas <span style={{ color: '#f0a608' }}>Pro</span></Text>
+                    <Text style={{ color: 'white', fontSize: 24, fontWeight: 'bold' }}>Moedas <Text style={{ color: '#f0a608' }}>Pro</Text></Text>
 
                 </SafeAreaView>
 
@@ -66,7 +77,7 @@ export default function HomeScreen() {
                     <Surface style={{ padding: 10, borderRadius: 8, elevation: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5 }}>
 
                         <Text style={{ fontWeight: 'bold', fontSize: 20 }}> Cotação Atual</Text>
-                        <Text style={{ fontSize: 13, color: 'gray' }}> Última Atualização: {currentTime ? `${currentTime.slice(10, -3)}` : "..."} </Text>
+                        <Text style={{ fontSize: 13, color: 'gray' }}> Última Atualização: {currentTime ? `${currentTime}` : "..."} </Text>
                     </Surface>
 
                     {Object.keys(currencies).length > 0 ? (
@@ -88,14 +99,14 @@ export default function HomeScreen() {
 
 
                     <Button
-                        style={{ marginTop: 200 }}
+                        style={{ marginTop: 80 }}
                         mode="contained"
                         disabled={loading}
                         onPress={async () => (fetchData(), setLoading(true), setTimeout(() => setLoading(false), 2000))}
-                        className={`${loading ? "loading" : ""}`}
+                        loading={loading}
                     >
 
-                        {loading ? <span className="spinner"></span> : <Text style={{ color: 'white' }}> Atualizar Cotações </Text>}
+                        <Text style={{ color: 'white' }}> Atualizar Cotações </Text>
 
                     </Button>
                 </SafeAreaView>

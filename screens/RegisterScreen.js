@@ -5,7 +5,7 @@ import { Button, Snackbar, Text, TextInput } from "react-native-paper";
 import { useState } from "react";
 import { validateEmail, validatePassword } from "../validation/inputValidation";
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -86,7 +86,10 @@ export default function RegisterScreen() {
             setLoading(false);
             onToggleSnackBar();
             setSnackbarMessage("Usuário registrado com sucesso!");
-            navigation.navigate("Login");
+            setTimeout(() => {
+                navigation.navigate("Login");
+            }, 1900);
+
         } catch (error) {
             setLoading(false);
             onToggleSnackBar();
@@ -100,6 +103,7 @@ export default function RegisterScreen() {
             <SafeAreaView style={loginStyles.formContainer}>
 
                 <TextInput
+                    value={email}
                     mode="outlined"
                     label="Email"
                     onChangeText={(email) => setEmail(email)}
@@ -108,6 +112,7 @@ export default function RegisterScreen() {
 
 
                 <TextInput
+                    value={password}
                     mode="outlined"
                     label="Senha"
                     secureTextEntry
@@ -116,6 +121,7 @@ export default function RegisterScreen() {
                 ></TextInput>
 
                 <TextInput
+                    value={confirmPassword}
                     mode="outlined"
                     label="Confirmar Senha"
                     secureTextEntry
@@ -125,12 +131,12 @@ export default function RegisterScreen() {
 
                 <SafeAreaView style={loginStyles.btnContainer}>
                     <Button
-                        className={`${loading ? "loading" : ""}`}
                         disabled={loading}
                         mode="contained"
                         onPress={handleRegister}
+                        loading={loading}
                     >
-                        {loading ? <span className="spinner"></span> : "Criar Conta"}
+                        Criar Conta
                     </Button>
                 </SafeAreaView>
 

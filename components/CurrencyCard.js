@@ -12,11 +12,13 @@ export default function CurrencyCard({ code, name, variation, bid, flagHome, fla
     const arrow = variation >= 0 ? "▲" : "▼";
 
     return (
-        <Surface style={{ padding: 10, paddingBottom: 15, borderRadius: 8, elevation: 4, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-            <SafeAreaView style={{ width: '15%', justifyContent: 'center' }} >
-                <FlagsIcon flagHome={flagHome} flagAway={flagAway} />
+        <Surface style={{ padding: 10, paddingBottom: 10, borderRadius: 8, elevation: 4, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5, paddingTop: 5 }}>
+            <SafeAreaView style={{ width: '15%', justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column' }} >
+                <SafeAreaView style={{ position: 'absolute', bottom: -12 }}>
+                    <FlagsIcon flagHome={flagHome} flagAway={flagAway} />
+                </SafeAreaView>
             </SafeAreaView>
-            <SafeAreaView>
+            <SafeAreaView style={{ paddingTop: 0 }} >
                 <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{code} / BRL</Text>
                 <Text style={{ fontSize: 13, color: 'gray' }}>{tagFormatted}</Text>
             </SafeAreaView>

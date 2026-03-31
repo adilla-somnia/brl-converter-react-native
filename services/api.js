@@ -10,8 +10,8 @@ export const getCurrencies = async () => {
             code: data.USD.code,
             variation: data.USD.varBid,
             bid: data.USD.bid,
-            flagHome: `https://raw.githubusercontent.com/lipis/flag-icons/refs/heads/main/flags/1x1/br.svg`,
-            flagAway: "https://raw.githubusercontent.com/lipis/flag-icons/refs/heads/main/flags/1x1/us.svg",
+            flagHome: `br`,
+            flagAway: "us",
             currentTime: data.USD.create_date
         },
         EUR: {
@@ -19,8 +19,8 @@ export const getCurrencies = async () => {
             code: data.EUR.code,
             variation: data.EUR.varBid,
             bid: data.EUR.bid,
-            flagHome: `https://raw.githubusercontent.com/lipis/flag-icons/refs/heads/main/flags/1x1/br.svg`,
-            flagAway: "https://raw.githubusercontent.com/lipis/flag-icons/refs/heads/main/flags/1x1/gb.svg",
+            flagHome: `br`,
+            flagAway: "gb",
             currentTime: data.EUR.create_date
         },
     };

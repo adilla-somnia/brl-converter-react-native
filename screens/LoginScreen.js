@@ -3,8 +3,7 @@ import { login } from "../services/auth";
 import { styles, loginStyles } from "../styles/root";
 import { Button, Snackbar, Text, TextInput } from "react-native-paper";
 import { Pressable } from "react-native";
-import { useState } from "react";
-import '../styles/LoadingButton.css';
+import { useEffect, useState } from "react";
 import { validateEmail } from "../validation/inputValidation";
 
 
@@ -76,12 +75,14 @@ function LoginScreen({ navigation }) {
             <SafeAreaView style={loginStyles.formContainer}>
 
                 <TextInput
+                    value={email}
                     mode="outlined"
                     label="Email"
                     onChangeText={(email) => setEmail(email)}
                     error={errorEmail}
                 ></TextInput>
                 <TextInput
+                    value={password}
                     mode="outlined"
                     label="Senha"
                     secureTextEntry
@@ -93,11 +94,12 @@ function LoginScreen({ navigation }) {
 
             <SafeAreaView style={loginStyles.btnContainer}>
                 <Button
-                    className={`${loading ? "loading" : ""}`}
                     disabled={loading}
                     onPress={handleLogin}
-                    mode="contained-tonal">
-                    {loading ? <span className="spinner"></span> : "Entrar"}
+                    mode="contained-tonal"
+                    loading={loading}
+                >
+                    Entrar
                 </Button>
 
                 <Button onPress={() => navigation.navigate("Register")} mode="contained">
